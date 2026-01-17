@@ -44,9 +44,6 @@ graph TD
 * **Critic**: Inspects generated segments for visual consistency, quality, and adherence to safety guidelines.
 * **Aggregator**: Reassembles the clips using an indexing system to maintain the correct chronological order regardless of parallel processing speed.
 
----
-
-**Would you like me to provide a final commit message for these README updates?**
 
 ## Video Generation Model
 
@@ -87,6 +84,7 @@ To run the system, first ensure all dependencies are installed by running `pip i
 
 
 ---
+
 
 
 
