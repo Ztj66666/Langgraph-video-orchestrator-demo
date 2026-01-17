@@ -51,15 +51,19 @@ The system requires two primary API keys to be configured in a `.env` file locat
 
 ---
 
-## Run the System
+## Usage and Setup
 
-The system can be operated in three distinct modes:
+To run the system, first ensure all dependencies are installed by running `pip install -r requirements.txt`. Once the environment is ready, you can operate the system in three distinct modes:
 
-1. **Web UI**: Run `python src/web_ui.py` to launch an interactive Gradio dashboard for uploading images and monitoring the agent's real-time reasoning.
-2. **CLI**: Run `python -m src.cli` to batch process images stored in the default `data/input` directory.
+1. **Web UI**: Execute `python src/web_ui.py` to launch an interactive Gradio dashboard for uploading images and monitoring the agent's real-time reasoning.
+2. **CLI**: Run `python -m src.cli` to batch process image assets stored in the default `data/input` directory and output the final video.
 3. **MCP Server**: Run `python src/mcp_server.py` to expose the orchestration logic as a tool for Model Context Protocol compatible clients, such as Claude Desktop.
 
 ---
+
+
+---
+
 
 
 
