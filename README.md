@@ -1,4 +1,3 @@
-根据你提供的仓库链接，我已经更新了README的内容。
 
 ```markdown
 # Multi-Agent Video Orchestration System
@@ -69,3 +68,4 @@ Developed as a project in Applied Artificial Intelligence, this system explores 
 ```
 
 ```
+
