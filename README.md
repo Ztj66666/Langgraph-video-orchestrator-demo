@@ -21,7 +21,25 @@ The project uses a stateful multi-agent workflow where specialized agents collab
 * **Workers**: Process tasks in parallel using the Wanx engine to transform images into 5-second video clips based on directed prompts.
 * **Critic**: Inspects generated clips for visual consistency, quality, and adherence to safety guidelines.
 * **Aggregator**: Reassembles the processed clips into a single file while maintaining the correct chronological order through an indexing system.
+System Architecture
+The system utilizes a stateful multi-agent workflow powered by LangGraph to orchestrate the video generation process.
 
+Code snippet
+
+graph TD
+    A[Input Images & Topic] --> B[AI Orchestrator]
+    B -->|Task Distribution| C1[Video Worker 1]
+    B -->|Task Distribution| C2[Video Worker 2]
+    B -->|Task Distribution| Cn[Video Worker n]
+    
+    C1 --> D[AI Critic]
+    C2 --> D
+    Cn --> D
+    
+    D -->|Approved| E[Sequential Aggregator]
+    D -->|Feedback| B
+    
+    E --> F[Final Cinematic Video]
 ---
 
 ## Video Generation Model
@@ -63,6 +81,7 @@ To run the system, first ensure all dependencies are installed by running `pip i
 
 
 ---
+
 
 
 
