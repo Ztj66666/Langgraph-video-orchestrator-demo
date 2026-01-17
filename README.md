@@ -1,13 +1,13 @@
 # Multi-Agent Video Orchestration System
 
-This project implements an AI-driven video generation pipeline designed to convert static image sequences into cinematic short films with visual continuity. It utilizes a multi-agent framework to handle the complexities of temporal alignment and motion orchestration in generative media.
+This project presents an AI-driven video generation pipeline that automates the transition from a sequence of static images into a cohesive cinematic short film. By utilizing the LangGraph framework, the system manages a sophisticated multi-agent workflow designed to address common challenges in generative video production, such as maintaining visual continuity and temporal consistency across different scenes.
 
 ---
 
 ## Technical Stack
 
 * **Core Framework**: Python 3.10, LangGraph, LangChain
-* **AI Models**: GPT-4o (Orchestration and Planning), Alibaba Cloud Wanx (I2V Generation)
+* **AI Models**: GPT-4o (Orchestration and Review), Alibaba Cloud Wanx 2.1 (Video Generation)
 * **Multimedia Tools**: MoviePy, FFmpeg
 * **Interfaces**: Gradio (Web), Command Line Interface (CLI), Model Context Protocol (MCP)
 
@@ -15,57 +15,54 @@ This project implements an AI-driven video generation pipeline designed to conve
 
 ## System Architecture
 
-The system is organized into a stateful workflow where multiple specialized agents collaborate to produce the final video.
+The project uses a stateful multi-agent workflow where specialized agents collaborate to manage the generation process.
 
-* **Orchestrator**: Analyzes the input image sequence to create a detailed storyboard. It designs motion instructions to ensure the end of one segment matches the start of the next.
-* **Workers**: Execute video generation in parallel. Each worker is responsible for a single segment, transforming the orchestrator's text instructions and the source image into a 5-second video clip.
-* **Critic**: Performs an automated review of the generated clips to check for visual consistency and adherence to safety guidelines.
-* **Aggregator**: Reassembles the processed clips. It uses an indexing system to maintain the correct chronological order during the final merge, regardless of the parallel processing speed.
+* **Orchestrator**: Analyzes the image sequence to create a storyboard with specific motion instructions to ensure the end of one segment matches the start of the next.
+* **Workers**: Process tasks in parallel using the Wanx engine to transform images into 5-second video clips based on directed prompts.
+* **Critic**: Inspects generated clips for visual consistency, quality, and adherence to safety guidelines.
+* **Aggregator**: Reassembles the processed clips into a single file while maintaining the correct chronological order through an indexing system.
 
 ---
 
-## Installation and Setup
+## Video Generation Model
 
-### Prerequisites
+The system currently utilizes the **wanx2.1-i2v-turbo** model via Alibaba Cloud DashScope. This is a cost-effective, entry-level model selected to balance performance with budget constraints. For users with sufficient account balance who require higher visual quality and improved motion consistency, the engine can be upgraded to more advanced models such as **wan2.6-i2v**.
 
-* Python 3.10 or higher
-* FFmpeg installed on the system path
-* API keys for OpenAI and Alibaba Cloud (DashScope)
+To modify the generation engine, locate the model parameter in the `VideoSynthesis.async_call` function（src/utils/video_processor.py） within the tool implementation:
 
-### Setup
-
-```bash
-git clone https://github.com/Ztj66666/Langgraph-video-orchestrator-demo.git
-cd Langgraph-video-orchestrator-demo
-pip install -r requirements.txt
-
-```
-
-### Environment Configuration
-
-Create a `.env` file in the root directory:
-
-```env
-OPENAI_API_KEY=your_openai_key
-DASHSCOPE_API_KEY=your_dashscope_key
-MODE=REAL # Use MOCK for testing logic without API costs
+```python
+rsp = VideoSynthesis.async_call(
+    model='wanx2.1-i2v-turbo',  # Replace with 'wanx2.1-i2v-plus' for higher quality
+    img_url=img_url,
+    prompt=final_prompt
+)
 
 ```
 
 ---
 
-## Usage
+## Configuration
 
-The system supports three operational modes:
+The system requires two primary API keys to be configured in a `.env` file located in the root directory:
 
-1. **Web Interface**: Run `python src/web_ui.py` to use the Gradio dashboard for uploading images and monitoring the workflow.
-2. **CLI Mode**: Run `python -m src.cli` to process images from `data/input` and output the results directly to `data/output`.
-3. **MCP Server**: Run `python src/mcp_server.py` to connect the orchestrator as a tool for LLM clients like Claude Desktop.
+* **OPENAI_API_KEY**: Used for the GPT-4o model which handles storyboard orchestration and automated segment review.
+* **DASHSCOPE_API_KEY**: Connects to the Alibaba Cloud DashScope (百炼) platform to access the Wanx (万相) video synthesis engine.
+* **MODE**: Set to `REAL` for live API calls or `MOCK` for testing the LangGraph workflow logic without incurring API costs.
 
 ---
 
-## Future Development
+## Run the System
 
-Planned improvements include implementing autoregressive frame anchoring, where the last frame of a segment is used as the input for the next, and adding an automated background music (BGM) generation agent to match the video's mood.
+The system can be operated in three distinct modes:
 
-Would you like me to help you format the project file structure section to reflect the actual folders in your repository?
+1. **Web UI**: Run `python src/web_ui.py` to launch an interactive Gradio dashboard for uploading images and monitoring the agent's real-time reasoning.
+2. **CLI**: Run `python -m src.cli` to batch process images stored in the default `data/input` directory.
+3. **MCP Server**: Run `python src/mcp_server.py` to expose the orchestration logic as a tool for Model Context Protocol compatible clients, such as Claude Desktop.
+
+---
+
+## Project Context
+
+Developed as part of a study in Applied Artificial Intelligence, this system explores the intersection of multi-agent collaboration and multimodal generative workflows. It addresses technical difficulties regarding pixel-level continuity and temporal alignment in AI-generated media. Future development will focus on integrating autoregressive frame anchoring, where the final frame of a segment serves as the input for the next to achieve near-perfect continuity.
+
+Would you like me to help you format a technical summary of the system's performance for your final project documentation?
