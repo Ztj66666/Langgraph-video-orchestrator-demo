@@ -32,7 +32,7 @@ To modify the generation engine, locate the model parameter in the `VideoSynthes
 
 ```python
 rsp = VideoSynthesis.async_call(
-    model='wanx2.1-i2v-turbo',  # Replace with 'wanx2.1-i2v-plus' for higher quality
+    model='*wan2.6-i2v',  # Replace with 'wanx2.1-i2v-plus' for higher quality
     img_url=img_url,
     prompt=final_prompt
 )
@@ -66,3 +66,4 @@ The system can be operated in three distinct modes:
 Developed as part of a study in Applied Artificial Intelligence, this system explores the intersection of multi-agent collaboration and multimodal generative workflows. It addresses technical difficulties regarding pixel-level continuity and temporal alignment in AI-generated media. Future development will focus on integrating autoregressive frame anchoring, where the final frame of a segment serves as the input for the next to achieve near-perfect continuity.
 
 Would you like me to help you format a technical summary of the system's performance for your final project documentation?
+
