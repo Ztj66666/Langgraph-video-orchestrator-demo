@@ -1,5 +1,4 @@
 
-```markdown
 # Multi-Agent Video Orchestration System
 
 This project presents an AI-driven video generation pipeline that automates the transition from a sequence of static images into a cohesive cinematic short film. By utilizing the LangGraph framework, the system manages a sophisticated multi-agent workflow designed to address common challenges in generative video production, such as maintaining visual continuity, temporal consistency, and logical movement across different scenes.
@@ -68,4 +67,5 @@ Developed as a project in Applied Artificial Intelligence, this system explores 
 ```
 
 ```
+
 
