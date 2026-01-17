@@ -1,0 +1,7 @@
+langchain-core
+langgraph
+pydantic
+python-dotenv
+# 视频处理库
+moviepy
+dashscope
