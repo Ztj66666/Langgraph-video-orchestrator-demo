@@ -13,19 +13,15 @@ This project presents an AI-driven video generation pipeline that automates the 
 
 ---
 
+Here is the rewritten **System Architecture** section for your README. It combines the agent descriptions with the Mermaid diagram for a professional, concise look.
+
+---
+
 ## System Architecture
 
-The project uses a stateful multi-agent workflow where specialized agents collaborate to manage the generation process.
+The system utilizes a stateful multi-agent workflow powered by LangGraph to orchestrate the video generation process through specialized agents.
 
-* **Orchestrator**: Analyzes the image sequence to create a storyboard with specific motion instructions to ensure the end of one segment matches the start of the next.
-* **Workers**: Process tasks in parallel using the Wanx engine to transform images into 5-second video clips based on directed prompts.
-* **Critic**: Inspects generated clips for visual consistency, quality, and adherence to safety guidelines.
-* **Aggregator**: Reassembles the processed clips into a single file while maintaining the correct chronological order through an indexing system.
-System Architecture
-The system utilizes a stateful multi-agent workflow powered by LangGraph to orchestrate the video generation process.
-
-Code snippet
-
+```mermaid
 graph TD
     A[Input Images & Topic] --> B[AI Orchestrator]
     B -->|Task Distribution| C1[Video Worker 1]
@@ -40,7 +36,17 @@ graph TD
     D -->|Feedback| B
     
     E --> F[Final Cinematic Video]
+
+```
+
+* **Orchestrator**: Acts as the director, analyzing the image sequence to design motion instructions that ensure visual continuity between segments.
+* **Workers**: Execute generation tasks in parallel using the **Wanx 2.1** engine to transform static images into 5-second video clips.
+* **Critic**: Inspects generated segments for visual consistency, quality, and adherence to safety guidelines.
+* **Aggregator**: Reassembles the clips using an indexing system to maintain the correct chronological order regardless of parallel processing speed.
+
 ---
+
+**Would you like me to provide a final commit message for these README updates?**
 
 ## Video Generation Model
 
