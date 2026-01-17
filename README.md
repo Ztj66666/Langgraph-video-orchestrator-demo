@@ -61,9 +61,6 @@ The system can be operated in three distinct modes:
 
 ---
 
-## Project Context
 
-Developed as part of a study in Applied Artificial Intelligence, this system explores the intersection of multi-agent collaboration and multimodal generative workflows. It addresses technical difficulties regarding pixel-level continuity and temporal alignment in AI-generated media. Future development will focus on integrating autoregressive frame anchoring, where the final frame of a segment serves as the input for the next to achieve near-perfect continuity.
 
-Would you like me to help you format a technical summary of the system's performance for your final project documentation?
 
